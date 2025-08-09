@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>54 HS | UH‑1N MQF — 54HS Theme</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d3b86" />
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="emblem.jpg" alt="54th Helicopter Squadron emblem" class="logo" />
+      <div class="brandtext">
+        <h1>UH‑1N MQF</h1>
+        <span>54th Helicopter Squadron</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="themeBtn" class="iconbtn" aria-pressed="false" title="Toggle light/dark theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="layout" id="main" tabindex="-1">
+    <aside class="sidebar panel" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle">Session</h2>
+
+      <div class="group">
+        <label class="check">
+          <input type="checkbox" id="shuffle">
+          <span>Shuffle questions</span>
+        </label>
+        <div class="seed">
+          <label for="seedInput">Seed</label>
+          <input type="text" id="seedInput" placeholder="e.g. 54HS-crew" />
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="favoritesOnly">
+          <span>Favorites only</span>
+        </label>
+      </div>
+
+      <div class="group">
+        <label class="check">
+          <input type="checkbox" id="feedback" checked>
+          <span>Immediate feedback</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="timerToggle">
+          <span>Use timer</span>
+        </label>
+        <div class="inline" id="timerMinutesWrap" hidden>
+          <label for="timerMinutes">Minutes</label>
+          <input type="number" id="timerMinutes" value="20" min="1" max="240" inputmode="numeric" />
+        </div>
+        <label class="check">
+          <input type="checkbox" id="examMode">
+          <span>Exam mode</span>
+        </label>
+      </div>
+
+      <div class="group">
+        <div class="inline">
+          <label for="questionCount">Question count</label>
+          <input type="number" id="questionCount" value="20" min="1" max="500" inputmode="numeric" />
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="btn primary" id="startBtn">Start Quiz</button>
+        <button class="btn" id="startFlashBtn">Start Flashcards</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+      </div>
+
+      <p class="tiny">Training use only • Ideas to TSgt. Loera</p>
+    </aside>
+
+    <section class="content">
+      <div class="hero">
+        <img src="69-6662-united-states-air-force-bell-uh-1n_PlanespottersNet_1592804_35617fa204_o.jpg" alt="" />
+        <div class="overlay">
+          <h2>54 HS • “Night Hounds”</h2>
+          <p>Practice MQF with a streamlined, squadron‑themed UI.</p>
+        </div>
+      </div>
+
+      <div id="progressWrap" class="progress" hidden>
+        <div id="progressBar" class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        <div id="timer" class="clock" aria-live="polite"></div>
+      </div>
+
+      <section id="quizContainer" class="quiz"></section>
+
+      <section class="panel analytics">
+        <h2>Results analytics</h2>
+        <div id="analyticsContent" class="grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function(){
+        navigator.serviceWorker.register('sw-edge.js').catch(()=>{});
+      });
+    }
+  </script>
+  <!-- Mobile/Edge-safe build you already have -->
+  <script src="script-mobile-compat.js?v=54hs-theme-1"></script>
+</body>
+</html>

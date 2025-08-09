@@ -1,0 +1,99 @@
+:root{
+  /* 54 HS palette */
+  --hs-navy:#0d3b86; --hs-blue:#1d62c1; --hs-sky:#63a7ff; --hs-gold:#f2b705;
+  --bg:#07122a; --panel:#0c1a3a; --card:#0b1833; --muted:#9fb4d6; --text:#e7eef9; --line:#1c2b55;
+  --good:#1ecf78; --bad:#e04747;
+  --button:#0f2a57; --button-ink:#d6e8ff;
+}
+:root.light{
+  --bg:#f6f9ff; --panel:#ffffff; --card:#ffffff; --muted:#536a8e; --text:#0a1731; --line:#d9e6ff;
+  --button:#eaf2ff; --button-ink:#0a1936;
+  --good:#0d9a5a; --bad:#c73535;
+}
+html,body{height:100%}
+*{box-sizing:border-box}
+body{margin:0; font-family:'Plus Jakarta Sans', Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
+  background:radial-gradient(1200px 800px at 15% -10%,#102b63 0%,transparent 60%),radial-gradient(1000px 600px at 100% 15%,#0b2252 0%,transparent 60%),var(--bg)}
+
+/* Topbar */
+.topbar{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; background:linear-gradient(90deg,#0b2252,#0d3b86,#1d62c1); border-bottom:2px solid var(--hs-gold); box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.brand{display:flex; gap:10px; align-items:center}
+.logo{width:48px;height:48px;border-radius:12px;background:#fff;padding:6px;object-fit:contain;border:2px solid var(--hs-gold)}
+.brandtext h1{font-size:1.1rem; margin:0 0 2px}
+.brandtext span{font-size:.8rem; color:#e5f1ff}
+.iconbtn{appearance:none;border:0;background:var(--button);color:var(--button-ink);border-radius:12px;padding:8px 10px;cursor:pointer}
+.iconbtn:hover{filter:brightness(1.1)}
+
+/* Layout */
+.layout{display:grid; grid-template-columns: 320px 1fr; gap:16px; max-width:1200px; margin:14px auto; padding:0 12px}
+@media (max-width: 960px){ .layout{grid-template-columns:1fr} .sidebar{order:2} .content{order:1} }
+
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.sidebar{padding:16px; position:sticky; top:76px; height:max-content}
+.sidebar h2{margin:4px 0 12px; color:#fff}
+
+/* Controls */
+.group{border-top:1px dashed var(--line); padding-top:12px; margin-top:12px}
+.check{display:flex; gap:10px; align-items:center; margin:8px 0; color:#e9f2ff; font-weight:600}
+.inline{display:flex; gap:10px; align-items:center; margin:8px 0}
+.seed{display:grid; gap:6px; margin:6px 0}
+.seed input{width:100%}
+.sidebar input[type="text"], .sidebar input[type="number"]{padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--text)}
+
+.cta{display:grid; gap:10px; margin-top:14px}
+.btn{appearance:none; border:1px solid var(--line); background:var(--button); color:var(--button-ink); padding:12px 14px; border-radius:14px; font-weight:800; cursor:pointer; letter-spacing:.2px}
+.btn.primary{background:linear-gradient(90deg,var(--hs-gold),var(--hs-sky)); color:#0b1a3a; border:0}
+.btn.ghost{background:transparent}
+.btn:hover{filter:brightness(1.05)}
+
+/* Content */
+.content{display:grid; gap:16px}
+.hero{position:relative; overflow:hidden; border-radius:18px; height:220px; border:1px solid var(--line); background:var(--card)}
+.hero img{width:100%; height:100%; object-fit:cover; filter:saturate(1.05)}
+.hero .overlay{position:absolute; inset:auto auto 12px 12px; background:rgba(6,18,44,.55); padding:10px 12px; border-radius:12px; backdrop-filter: blur(6px); border:1px solid #1f3873}
+.hero h2{margin:0 0 4px}
+.hero p{margin:0; color:#cfe1ff}
+
+.progress{display:flex; align-items:center; gap:10px}
+.bar{flex:1; height:10px; background:linear-gradient(90deg,var(--hs-gold),var(--hs-sky)); border-radius:10px; width:0%}
+.clock{min-width:84px; text-align:right; font-weight:800}
+
+/* Quiz & cards */
+.quiz{}
+.question-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin:16px 0}
+.q-meta{font-size:.85rem; color:var(--muted); margin:0 0 6px}
+.q-text{margin:.25rem 0 1rem; font-size:1.05rem}
+.q-ref{margin-top:8px; font-size:.85rem; color:var(--muted)}
+
+.option-button{display:block; width:100%; text-align:left; padding:14px 16px; margin:10px 0; background:#0e2149; color:#e6f1ff; border:2px solid var(--hs-blue); border-radius:12px; font-weight:800; cursor:pointer; transition:transform .02s, box-shadow .2s, background .2s}
+:root.light .option-button{ background:#eaf2ff; color:#07213a; border-color:#1d62c1}
+.option-button:hover{box-shadow:0 0 0 3px rgba(99,167,255,.18)}
+.option-button:active{transform:translateY(1px)}
+.option-button.selected{background:#143a7a !important; border-color:#1d62c1}
+:root.light .option-button.selected{background:#cfe3ff !important}
+.option-button.correct{background:var(--good) !important; color:#0b1a2e; border-color:#0f9f59}
+.option-button.incorrect{background:var(--bad) !important; color:#fff; border-color:#922d2d}
+html.dark .option-button.incorrect{background:var(--bad) !important; color:#fff !important; border-color:#922d2d !important}
+
+.nav-buttons{display:flex; gap:10px; justify-content:space-between; margin-top:12px}
+
+/* Flashcards */
+.flashcard-wrap{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; margin:16px 0}
+.flashcard-front,.flashcard-back{min-height:160px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:1.1rem; padding:10px}
+.flashcard-meta{display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:.85rem; margin-bottom:8px}
+.flashcard-actions{display:flex; gap:10px; justify-content:center; margin-top:14px}
+.btn-good{background:var(--good); color:#0b1a2e} .btn-good:hover{filter:brightness(1.05)}
+.btn-bad{background:var(--bad); color:#fff} .btn-bad:hover{filter:brightness(1.05)}
+
+/* Notes */
+.bookmark{cursor:pointer; margin-left:8px; user-select:none}
+.notes{margin-top:10px}
+.notes textarea{width:100%; min-height:90px; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--text)}
+
+/* Analytics */
+.analytics{}
+.analytics .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:8px}
+.analytics .grid .tile{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px}
+.analytics h2{margin:0 0 8px}
+.tiny{font-size:.7rem; color:var(--muted); margin-top:8px}
